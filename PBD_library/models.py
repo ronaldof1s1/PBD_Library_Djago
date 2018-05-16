@@ -12,7 +12,7 @@ class Address(models.Model):
 
 class Person(models.Model):
     name = models.CharField(unique=True, max_length=100)
-    address = models.OneToOneField(Address, on_delete=models.DO_NOTHING)
+    address = models.OneToOneField(Address, on_delete=models.DO_NOTHING, null=True, blank=True)
     telephone = models.CharField(max_length=20)
 
     class Meta:
@@ -31,7 +31,7 @@ class Publisher(Person):
 class Book(models.Model):
     name = models.CharField(max_length=100, unique=True)
     keywords = models.TextField(max_length=100)
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField(default=0)
     authors = models.ManyToManyField(Author, related_name='books')
     publisher = models.ForeignKey(Publisher, on_delete=models.DO_NOTHING, related_name='books')
 
@@ -39,7 +39,7 @@ class Book(models.Model):
         return self.name
 
 class Copy(models.Model):
-    lent = models.BooleanField()
+    lent = models.BooleanField(default=False)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='copies')
 
     def __str__(self):
