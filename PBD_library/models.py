@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-# Create your models here.
+
 
 class Address(models.Model):
     street = models.CharField(max_length=100)
@@ -9,7 +9,6 @@ class Address(models.Model):
     city = models.CharField(max_length=20)
     state = models.CharField(max_length=20)
     country = models.CharField(max_length=20)
-
 
 class Person(models.Model):
     name = models.CharField(unique=True, max_length=100)
@@ -45,9 +44,9 @@ class Copy(models.Model):
 
     def __str__(self):
         if self.lent:
-            lent = ' Emprestado'
+            lent = ' -- [Emprestado]'
         else:
-            lent = ' Disponível'
+            lent = ' -- [Disponível]'
 
         return self.book.name + lent
 
@@ -55,7 +54,7 @@ class User(Person):
     student = models.BooleanField()
 
 class Loan(models.Model):
-    loan_date = models.DateField(default=timezone.now())
+    loan_date = models.DateField(default=timezone.now)
     return_date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     copy = models.ForeignKey(Copy, on_delete=models.CASCADE)
