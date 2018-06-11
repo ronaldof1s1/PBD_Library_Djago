@@ -16,7 +16,7 @@ class Person(models.Model):
     telephone = models.CharField(max_length=20)
 
     class Meta:
-        abstract=True
+        abstract = True
 
     def __str__(self):
         return self.name
@@ -52,6 +52,7 @@ class Copy(models.Model):
 
 class User(Person):
     student = models.BooleanField()
+
 
 class Loan(models.Model):
     loan_date = models.DateField(default=timezone.now)
