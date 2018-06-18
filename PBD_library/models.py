@@ -57,9 +57,6 @@ class User(Person):
 class Loan(models.Model):
     loan_date = models.DateField(default=timezone.now)
     return_date = models.DateField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    copy = models.ForeignKey(Copy, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='loans')
+    copy = models.ForeignKey(Copy, on_delete=models.CASCADE, related_name='loans')
 
-
-    def __str__(self):
-        self.copy.__str__() + " -> " + self.user.__str__()
