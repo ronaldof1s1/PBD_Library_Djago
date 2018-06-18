@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+    <h1>{{ book.name }}</h1>
+    <ul>
+
+    <li>Autor: {% for author in authors %}{{ author.name }}, {% endfor %}</li>
+
+    <li>Editora: {{ book.publisher.name }}</li>
+
+    <li>Palavras-chave: {{ book.keywords }}</li>
+
+    <li>Quantidade: {{ book.quantity }}</li>
+
+    </ul>
+
+<h3>Emprestimos</h3>
+{% for copy in copies.all    %}
+    {{ copy }}
+
+{% endfor %}
+</body>
+</html>

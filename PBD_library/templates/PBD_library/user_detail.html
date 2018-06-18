@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>{{ user.name }}</h1>
+<ul>
+    <li>Telefone: {{ user.telephone }}</li>
+    <li>Student: {{ user.student }}</li>
+<h3>Emprestimos</h3>
+    <ul>
+        {% for loan in loans %}
+            <li>{{ loan.copy.book.name }}</li>
+        {% endfor %}
+    </ul>
+</ul>
+</body>
+</html>
